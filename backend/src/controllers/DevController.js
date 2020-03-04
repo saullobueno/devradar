@@ -55,7 +55,7 @@ module.exports = {
 			});
 
 			// Filtrar as conexões que estão há no máximo 10km de distância
-			// e que o novo dev tenha pelo menos uma das tecnologias filtradas
+			// e que o novo dev tenha pelo menos uma das tecnologias filtradas, para o websocket
 			const sendSocketMessageTo = findConnections(
 				{ latitude, longitude },
 				techsArray

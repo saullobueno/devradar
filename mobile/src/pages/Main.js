@@ -19,6 +19,7 @@ import {
 import { MaterialIcons } from '@expo/vector-icons';
 
 import api from '../services/api';
+// importando websockets para comunicação do backend
 import { connect, disconnect, subscribeToNewDevs } from '../services/socket';
 
 function Main({ navigation }) {
@@ -57,11 +58,13 @@ function Main({ navigation }) {
 		loadInitialPosition();
 	}, []);
 
+	// monitora a variavel devs e toda vez q alterar, dispara a função subcribetonewdev
 	useEffect(() => {
 		subscribeToNewDevs(dev => setDevs([...devs, dev]));
 	}, [devs]);
 
 	function setupWebsocket() {
+		// desconecta antes de conectar novamente
 		disconnect();
 
 		const { latitude, longitude } = currentRegion;
@@ -82,6 +85,7 @@ function Main({ navigation }) {
 		});
 		// No backend ele retorna o conteudo dentro de data.devs e nao somente data
 		setDevs(response.data.devs);
+		// carrega o websocket tambem
 		setupWebsocket();
 	}
 

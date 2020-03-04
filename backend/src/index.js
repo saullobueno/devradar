@@ -5,11 +5,15 @@ const http = require('http');
 
 // Importando as rotas do arquivo
 const routes = require('./routes');
+// importanto o websocket
 const { setupWebsocket } = require('./websocket');
 
 const app = express();
+
+// utilizando protocolo http fora do express
 const server = http.Server(app);
 
+// instanciando o websocket enviando o servidor
 setupWebsocket(server);
 
 // Conectando banco de dados não-relacional, o MongoDB, através do mongodb.com.
@@ -32,5 +36,5 @@ app.use(express.json());
 // Instanciando todas as rotas
 app.use(routes);
 
-// porta localhost
+// utilizando servidor na porta localhost
 server.listen(3333);
