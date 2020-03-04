@@ -16,14 +16,15 @@ setupWebsocket(server);
 // Instalar mongosse
 // Substituir o <password> pela senha da conta
 mongoose.connect(
-	'mongodb+srv://saullobueno:<password>@cluster0-cc8ik.mongodb.net/test?retryWrites=true&w=majority',
+	'mongodb+srv://saullobueno:q1w2e3r4@cluster0-cc8ik.mongodb.net/test?retryWrites=true&w=majority',
 	{
 		useNewUrlParser: true,
 		useUnifiedTopology: true
 	}
 );
 
-app.use(cors());
+// Habilitar acesso ao backend para outras endereços. Deixando vazio habilita para todos, ou especifique conforme abaixo.
+app.use(cors(/* { origin: 'http://localhost:3000' } */));
 
 // Falando para o express entender JSON em toda a aplicação. O use indica para toda a aplicação.
 app.use(express.json());
